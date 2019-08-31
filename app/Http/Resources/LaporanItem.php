@@ -26,9 +26,32 @@ class LaporanItem extends JsonResource
             'alamat' => $this->alamat,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'gambar' => $this->gambar,
+            'gambar' => $this->gambar == null ? "" : $this->gambar,
+            'gambar2' => $this->gambar2 == null ? "" : $this->gambar2,
+            'gambar3' => $this->gambar3 == null ? "" : $this->gambar3,
             'verified' => $this->verified,
-            'status' => $this->status
+            'public' => $this->public,
+            'status' => $this->stringStatus($this->status)
         ];
+    }
+
+    function stringStatus($status)
+    {
+        switch ($status) {
+            case "0":
+                return "Proses verifikasi laporan";
+                break;
+            case 1:
+                return "Terverifikasi dan Sedang Dalam Proses Penugasan";
+                break;
+            case 2:
+                return "Kasus Sudah Selesai";
+                break;
+            case 3:
+                return "Laporan tidak diterima";
+                break;
+            default:
+                return "Invalid status";
+        }
     }
 }
