@@ -31,7 +31,8 @@ class LaporanItem extends JsonResource
             'gambar3' => $this->gambar3 == null ? "" : $this->gambar3,
             'verified' => $this->verified,
             'public' => $this->public,
-            'status' => $this->stringStatus($this->status)
+            'status' => $this->stringStatus($this->status),
+            'id_status' => $this->status
         ];
     }
 
