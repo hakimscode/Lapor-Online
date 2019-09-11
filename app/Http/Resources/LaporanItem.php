@@ -29,10 +29,10 @@ class LaporanItem extends JsonResource
             'gambar' => $this->gambar == null ? "" : $this->gambar,
             'gambar2' => $this->gambar2 == null ? "" : $this->gambar2,
             'gambar3' => $this->gambar3 == null ? "" : $this->gambar3,
-            'verified' => $this->verified,
-            'public' => $this->public,
+            'verified' => strval($this->verified),
+            'public' => strval($this->public),
             'status' => $this->stringStatus($this->status),
-            'id_status' => $this->status
+            'id_status' => strval($this->status)
         ];
     }
 

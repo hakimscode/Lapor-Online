@@ -163,8 +163,8 @@ class LaporanController extends Controller
 
         $laporan = Laporan::findOrFail($id_laporan);
 
-        $laporan->verified = 1;
-        $laporan->status = 1;
+        $laporan->verified = "1";
+        $laporan->status = "1";
 
         if ($laporan->save()) {
             $status = true;
@@ -183,7 +183,7 @@ class LaporanController extends Controller
 
         $laporan = Laporan::findOrFail($id_laporan);
 
-        $laporan->status = 3;
+        $laporan->status = "3";
 
         if ($laporan->save()) {
             $status = true;
