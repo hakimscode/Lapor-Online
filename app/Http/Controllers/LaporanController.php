@@ -126,6 +126,7 @@ class LaporanController extends Controller
             $laporan->gambar3 = $url_file3;
             $laporan->verified = $request->input('verified');
             $laporan->status = $request->input('status');
+            $laporan->public = 0;
 
             if ($laporan->save()) {
                 $status = true;
@@ -163,10 +164,30 @@ class LaporanController extends Controller
         $laporan = Laporan::findOrFail($id_laporan);
 
         $laporan->verified = 1;
+        $laporan->status = 1;
 
         if ($laporan->save()) {
             $status = true;
             $message = "Berhasil memverifikasi laporan";
+            $result = new LaporanItem($laporan);
+        }
+
+        return array("status" => $status, "message" => $message, "result" => $result);
+    }
+
+    public function tolak_laporan($id_laporan)
+    {
+        $status = false;
+        $message = "";
+        $result = array();
+
+        $laporan = Laporan::findOrFail($id_laporan);
+
+        $laporan->status = 3;
+
+        if ($laporan->save()) {
+            $status = true;
+            $message = "Berhasil menolak laporan";
             $result = new LaporanItem($laporan);
         }
 

@@ -42,13 +42,13 @@ class LaporanItem extends JsonResource
             case "0":
                 return "Proses verifikasi laporan";
                 break;
-            case 1:
+            case "1":
                 return "Terverifikasi dan Sedang Dalam Proses Penugasan";
                 break;
-            case 2:
+            case "2":
                 return "Kasus Sudah Selesai";
                 break;
-            case 3:
+            case "3":
                 return "Laporan tidak diterima";
                 break;
             default:

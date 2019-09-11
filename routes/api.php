@@ -40,4 +40,6 @@ Route::group(['prefix' => 'laporan'], function () {
     Route::get('/delete/{id_laporan}', "LaporanController@destroy");
     Route::get('/{id_laporan}', "LaporanController@show");
     Route::post('/update_status', "LaporanController@update_status_laporan");
+    Route::get('/verifikasi_laporan/{id_laporan}', "LaporanController@verifikasi_laporan");
+    Route::get('/tolak_laporan/{id_laporan}', "LaporanController@tolak_laporan");
 });
