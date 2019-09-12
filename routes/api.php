@@ -28,6 +28,7 @@ Route::group(['prefix' => 'jenis_laporan'], function () {
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', "UserController@list_user");
     Route::get('/polisi', "UserController@list_user_polisi");
+    Route::get('/all', "UserController@list_user_all");
     Route::get('/{userid}', "UserController@list_user_byid");
     Route::get('/verifikasi/{userid}', "UserController@verifikasi_user");
     Route::post('/insert', "UserController@add_user");

@@ -12,13 +12,18 @@ class UserController extends Controller
 {
     public function list_user()
     {
-        $result = new UserCollection(User::where('jenis_user', 2)->get());
+        $result = new UserCollection(User::where('jenis_user', 2)->orderBy('id', 'desc')->get());
         return array("status" => true, "message" => "Berhasil", "result" => $result);
     }
 
     public function list_user_polisi()
     {
-        return new UserCollection(User::where('jenis_user', 1)->get());
+        return new UserCollection(User::where('jenis_user', 1)->orderBy('id', 'desc')->get());
+    }
+
+    public function list_user_all()
+    {
+        return new UserCollection(User::orderBy('id', 'desc')->get());
     }
 
     public function list_user_byid(User $userid)
