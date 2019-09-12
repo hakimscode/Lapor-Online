@@ -32,6 +32,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/verifikasi/{userid}', "UserController@verifikasi_user");
     Route::post('/insert', "UserController@add_user");
     Route::post('/login', "UserController@login_user");
+    Route::get('/delete/{id_user}', "UserController@destroy");
 });
 
 Route::group(['prefix' => 'laporan'], function () {

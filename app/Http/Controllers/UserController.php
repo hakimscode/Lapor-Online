@@ -96,4 +96,21 @@ class UserController extends Controller
 
         return array("status" => $status, "message" => $message, "result" => $result);
     }
+
+    public function destroy($id_user)
+    {
+        $status = false;
+        $message = "";
+        $result = array();
+
+        $user = User::findOrFail($id_user);
+
+        if ($user->delete()) {
+            $status = true;
+            $message = "Berhasil menghapus user";
+            $result = new UserItem($user);
+        }
+
+        return array("status" => $status, "message" => $message, "result" => $result);
+    }
 }
