@@ -18,10 +18,10 @@ class UserItem extends JsonResource
             'id' => $this->id,
             'nama_user' => $this->nama_user,
             'no_ktp' => $this->no_ktp,
-            'status' => $this->status,
+            'status' => strval($this->status),
             'string_status' => $this->status == 0 ? "Inactive" : "Active",
             'ktp_verfied_at' => $this->ktp_verified_at == NULL ? "" : date_format($this->ktp_verified_at, 'd-M-Y H:i:s'),
-            'jenis_user' => $this->jenis_user,
+            'jenis_user' => strval($this->jenis_user),
             'string_jenis_user' => $this->jenis_user == 1 ? "Polisi" : $this->jenis_user == 2 ? "Sipil" : ""
         ];
     }
