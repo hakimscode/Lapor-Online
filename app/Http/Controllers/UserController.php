@@ -23,7 +23,8 @@ class UserController extends Controller
 
     public function list_user_all()
     {
-        return new UserCollection(User::orderBy('id', 'desc')->get());
+        $result = new UserCollection(User::orderBy('id', 'desc')->get());
+        return array("status" => true, "message" => "Berhasil", "result" => $result);
     }
 
     public function list_user_byid(User $userid)
