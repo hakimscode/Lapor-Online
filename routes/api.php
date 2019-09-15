@@ -33,6 +33,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/verifikasi/{userid}', "UserController@verifikasi_user");
     Route::post('/insert', "UserController@add_user");
     Route::post('/login', "UserController@login_user");
+    Route::post('/login_admin', "UserController@login_admin");
+    Route::get('/get_user_by_token/{token}', 'UserController@getUserByToken');
     Route::get('/delete/{id_user}', "UserController@destroy");
 });
 

@@ -7,6 +7,9 @@ use App\User;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserItem;
 use Illuminate\Support\Facades\Hash;
+use App\Admin;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UserController extends Controller
 {
@@ -101,6 +104,38 @@ class UserController extends Controller
         }
 
         return array("status" => $status, "message" => $message, "result" => $result);
+    }
+
+    // Login dan mendapatkan token
+    public function login_admin(Request $request)
+    {
+        $status = TRUE;
+        $mesasge = "Berhasil login";
+        $currentUser = array();
+
+        $credentials = $request->only('username', 'password');
+
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                $status = FALSE;
+                $mesasge = "Invalid username or password";
+            } else {
+                $currentUser = JWTAuth::user();
+                Admin::where('id', $currentUser['id'])->update(["remember_token" => $token]);
+            }
+        } catch (JWTException $e) {
+            $status = FALSE;
+            $mesasge = "Something wrong in communicating with API or JWT";
+        }
+
+        return response()->json(array("status" => $status, "message" => $mesasge, "user" => $currentUser, "token" => $token));
+    }
+
+    public function getUserByToken($token)
+    {
+        $admin = Admin::where("remember_token", $token)->first();
+
+        return response()->json($admin);
     }
 
     public function destroy($id_user)
