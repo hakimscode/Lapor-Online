@@ -46,4 +46,5 @@ Route::group(['prefix' => 'laporan'], function () {
     Route::post('/update_status', "LaporanController@update_status_laporan");
     Route::get('/verifikasi_laporan/{id_laporan}', "LaporanController@verifikasi_laporan");
     Route::get('/tolak_laporan/{id_laporan}', "LaporanController@tolak_laporan");
+    Route::post('/update_publikasi', "LaporanController@update_publikasi");
 });

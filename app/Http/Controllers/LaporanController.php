@@ -235,4 +235,23 @@ class LaporanController extends Controller
 
         return array("status" => $status, "message" => $message, "result" => $result);
     }
+
+    public function update_publikasi(Request $request)
+    {
+        $status = false;
+        $message = "";
+        $result = array();
+
+        $laporan = Laporan::findOrFail($request->input('id'));
+
+        $laporan->public = $request->input('public');
+
+        if ($laporan->save()) {
+            $status = true;
+            $message = "Berhasil mengupdate status publik laporan";
+            $result = new LaporanItem($laporan);
+        }
+
+        return array("status" => $status, "message" => $message, "result" => $result);
+    }
 }
