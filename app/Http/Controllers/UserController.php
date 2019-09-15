@@ -135,7 +135,11 @@ class UserController extends Controller
     {
         $admin = Admin::where("remember_token", $token)->first();
 
-        return response()->json($admin);
+        if ($admin) {
+            return response()->json($admin);
+        } else {
+            return response()->json(array("id" => 0));
+        }
     }
 
     public function destroy($id_user)
