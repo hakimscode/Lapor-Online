@@ -45,6 +45,12 @@ class UserController extends Controller
         $user = new User();
         $user->nama_user = $request->input('nama_user');
         $user->no_ktp = $request->input('no_ktp');
+        $user->pangkat = $request->input('pangkat');
+        $user->jabatan = $request->input('jabatan');
+        $user->instansi = $request->input('instansi');
+        $user->alamat = $request->input('alamat');
+        $user->no_hp = $request->input('no_hp');
+        $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->status = $request->input('status');
         $user->ktp_verified_at = $request->input('ktp_verified_at');
